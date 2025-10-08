@@ -1,4 +1,4 @@
-package pl.wszib.metodyobliczenioweisymulacja.util;
+package pl.wszib.metodyobliczenioweisymulacja.util.BinaryRepresentation;
 
 public class BinaryRepresentation {
   private String sign;
