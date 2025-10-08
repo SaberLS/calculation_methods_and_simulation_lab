@@ -9,16 +9,25 @@ public class Zadanie1 {
   }
 
   public static void compareFloatDouble(int maxIter) {
+    // Starting point
     double xDouble = 0.01d;
     float xFloat = 0.01f;
 
     // Table header
-    System.out.printf("%5s%25s%25s%n", "n", "float", "double");
-    System.out.println("---------------------------------------------------------------");
+    System.out.printf("%5s\t%25s\t%10s\t%25s\t%18s\t%n", "n", "float", "f_hex", "double", "d_hex");
+    System.out.println(
+        "------------------------------------------------------------------------------------------------------");
 
     for (int n = 0; n < maxIter; n++) {
+      BigDecimal xDobubleBD = new BigDecimal(xDouble);
+      BigDecimal xFloatBD = new BigDecimal(xFloat);
 
-      System.out.printf("%-5s\t%.20E\t%.20E%n", n, new BigDecimal(xFloat), new BigDecimal(xDouble));
+      // Get hex representations
+      String xFloatHex = Float.toHexString(xFloat);
+      String xDoubleHex = Double.toHexString(xDouble);
+
+      // use BigDecimals to display the values which are actually stored in memory
+      System.out.printf("%-5s\t%.20E\t%10s\t%.20E\t%10s%n", n, xFloatBD, xFloatHex, xDobubleBD, xDoubleHex);
 
       // Kolejne iteracje
       xDouble = countNext(xDouble);
