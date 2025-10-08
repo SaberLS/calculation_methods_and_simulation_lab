@@ -1,56 +1,44 @@
-package pl.wszib.metodyobliczenioweisymulacja.util.BinaryRepresentation;
+package pl.wszib.metodyobliczenioweisymulacja.util.binaryrepresentation;
 
-public class BinaryRepresentation {
-  private String sign;
-  private String exponent;
-  private String mantissa;
+public abstract class BinaryRepresentation<T extends Number> {
+  protected final T value;
+  protected final String sign;
+  protected final String exponent;
+  protected final String fraction;
 
-  // --- Constructor for float (32-bit IEEE 754) ---
-  public BinaryRepresentation(float value) {
-    int bits = Float.floatToIntBits(value);
-    String binary = String.format("%32s", Integer.toBinaryString(bits)).replace(' ', '0');
-
-    this.sign = binary.substring(0, 1);
-    this.exponent = binary.substring(1, 9);
-    this.mantissa = binary.substring(9);
+  protected BinaryRepresentation(T value) {
+    this.value = value;
+    this.sign = extractSign(value);
+    this.exponent = extractExponent(value);
+    this.fraction = extractFraction(value);
   }
 
-  // --- Constructor for double (64-bit IEEE 754) ---
-  public BinaryRepresentation(double value) {
-    long bits = Double.doubleToLongBits(value);
-    String binary = String.format("%64s", Long.toBinaryString(bits)).replace(' ', '0');
+  // --- Abstract methods (implemented by subclasses) ---
+  protected abstract String extractSign(T value);
 
-    this.sign = binary.substring(0, 1);
-    this.exponent = binary.substring(1, 12);
-    this.mantissa = binary.substring(12);
+  protected abstract String extractExponent(T value);
+
+  protected abstract String extractFraction(T value);
+
+  // --- Getters ---
+  public T getValue() {
+    return value;
   }
 
   public String getSign() {
-    return this.sign;
-  }
-
-  public void setSign(String sign) {
-    this.sign = sign;
+    return sign;
   }
 
   public String getExponent() {
-    return this.exponent;
+    return exponent;
   }
 
-  public void setExponent(String exponent) {
-    this.exponent = exponent;
-  }
-
-  public String getMantissa() {
-    return this.mantissa;
-  }
-
-  public void setMantissa(String mantissa) {
-    this.mantissa = mantissa;
+  public String getFraction() {
+    return fraction;
   }
 
   @Override
   public String toString() {
-    return sign + exponent + mantissa;
+    return sign + exponent + fraction;
   }
 }
