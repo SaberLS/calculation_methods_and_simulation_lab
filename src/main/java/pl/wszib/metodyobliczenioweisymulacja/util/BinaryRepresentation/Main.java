@@ -14,7 +14,8 @@ public class Main {
 
     // Example double precision with the smallest double greater than one
     // https://en.wikipedia.org/wiki/Double-precision_floating-point_format#Double-precision_examples
-    DoubleBinaryRepresentation dr = new DoubleBinaryRepresentation(1.0000000000000002220);
+    double smallestGreaterThanOne = 1.0000000000000002220;
+    DoubleBinaryRepresentation dr = new DoubleBinaryRepresentation(smallestGreaterThanOne);
 
     System.out.println(dr);
     System.out.println(dr.getSign());
