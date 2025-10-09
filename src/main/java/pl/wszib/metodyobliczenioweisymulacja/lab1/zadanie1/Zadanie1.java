@@ -36,7 +36,8 @@ public class Zadanie1 {
         // use BigDecimals to display the values which are actually stored in memory
         System.out.printf("%-5s\t%.20E\t%10s\t%.20E\t%10s%n", n, xFloatBD, xFloatHex, xDoubleBD, xDoubleHex);
 
-        csvWriter.printf("%d,%.20E,%s,%.20E,%s%n", n, xFloatBD, xFloatHex, xDoubleBD, xDoubleHex);
+        csvWriter.println(
+            n + "," + xFloatBD + "," + xFloatHex + "," + xDoubleBD + "," + xDoubleHex);
 
         // Kolejne iteracje
         xDouble = countNext(xDouble);
