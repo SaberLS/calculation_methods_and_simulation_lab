@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 
+import pl.wszib.metodyobliczenioweisymulacja.util.binaryrepresentation.DoubleBinaryRepresentation;
+import pl.wszib.metodyobliczenioweisymulacja.util.binaryrepresentation.FloatBinaryRepresentation;
+import pl.wszib.metodyobliczenioweisymulacja.util.mathform.MathForm;
+
 public class Zadanie1 {
   public static void main(String[] args) {
     int maxIter = 100;
@@ -15,7 +19,7 @@ public class Zadanie1 {
     // Starting point
     try (PrintWriter csvWriter = new PrintWriter(new FileWriter("results_1.csv"))) {
 
-      csvWriter.println("n,float,f_hex,double,d_hex");
+      csvWriter.println("n,float,f_bin,f_math,f_hex,double,d_bin,d_math,d_hex");
 
       double xDouble = 0.01d;
       float xFloat = 0.01f;
@@ -33,11 +37,27 @@ public class Zadanie1 {
         String xFloatHex = Float.toHexString(xFloat);
         String xDoubleHex = Double.toHexString(xDouble);
 
+        // Get binary representation
+        DoubleBinaryRepresentation xDoubleBin = new DoubleBinaryRepresentation(xDouble);
+        FloatBinaryRepresentation xFloatBin = new FloatBinaryRepresentation(xFloat);
+
+        // Get math representation
+        String xDoubleMath = MathForm.of(xDoubleBin);
+        String xFloatMath = MathForm.of(xFloatBin);
+
         // use BigDecimals to display the values which are actually stored in memory
         System.out.printf("%-5s\t%.20E\t%10s\t%.20E\t%10s%n", n, xFloatBD, xFloatHex, xDoubleBD, xDoubleHex);
 
         csvWriter.println(
-            n + "," + xFloatBD + "," + xFloatHex + "," + xDoubleBD + "," + xDoubleHex);
+            n + "," +
+                xFloatBD + "," +
+                xFloatBin + ',' +
+                xFloatMath + ',' +
+                xFloatHex + "," +
+                xDoubleBD + "," +
+                xDoubleBin + ',' +
+                xDoubleMath + ',' +
+                xDoubleHex);
 
         // Kolejne iteracje
         xDouble = countNext(xDouble);
