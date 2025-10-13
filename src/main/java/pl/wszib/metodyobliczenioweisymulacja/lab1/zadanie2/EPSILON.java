@@ -1,5 +1,8 @@
 package pl.wszib.metodyobliczenioweisymulacja.lab1.zadanie2;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 final class EPSILON {
     public static final float FLOAT;
     public static final double DOUBLE;
@@ -27,5 +30,21 @@ final class EPSILON {
         }
 
         return epsilon;
+    }
+
+    // find epsilon for given math context
+    public static BigDecimal findMathContextEpsilon(MathContext mc) {
+        BigDecimal epsilon = BigDecimal.ONE;
+        BigDecimal one = BigDecimal.ONE;
+        BigDecimal two = new BigDecimal(2);
+
+        BigDecimal prev = epsilon;
+
+        while (one.add(epsilon, mc).compareTo(one) > 0) {
+            prev = epsilon;
+            epsilon = epsilon.divide(two, mc);
+        }
+
+        return prev;
     }
 }
