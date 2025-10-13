@@ -1,5 +1,7 @@
 package pl.wszib.metodyobliczenioweisymulacja.util.mathform;
 
+import java.math.BigDecimal;
+
 interface FloatFormat {
   int BIAS = 127;
   int FRACTION = 23;
@@ -12,6 +14,11 @@ public class FloatRepresentation extends FloatingPointRepresentation<Float> impl
   public FloatRepresentation(float value) {
     super(value);
     this.bits = Integer.toUnsignedLong(Float.floatToIntBits(value));
+  }
+
+  @Override
+  public BigDecimal getRealValue() {
+    return new BigDecimal(value);
   }
 
   @Override

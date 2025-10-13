@@ -1,5 +1,7 @@
 package pl.wszib.metodyobliczenioweisymulacja.util.mathform;
 
+import java.math.BigDecimal;
+
 interface DoubleFormat {
   int BIAS = 1023;
   int FRACTION = 52;
@@ -12,6 +14,11 @@ public class DoubleRepresentation extends FloatingPointRepresentation<Double> im
   public DoubleRepresentation(double value) {
     super(value);
     this.bits = Double.doubleToLongBits(value);
+  }
+
+  @Override
+  public BigDecimal getRealValue() {
+    return new BigDecimal(value);
   }
 
   @Override

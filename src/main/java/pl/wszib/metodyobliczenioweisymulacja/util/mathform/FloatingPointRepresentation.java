@@ -49,9 +49,7 @@ public abstract class FloatingPointRepresentation<T extends Number> {
     return this.getExponentBits() - this.getBias();
   }
 
-  public BigDecimal getRealValue() {
-    return new BigDecimal(value.toString());
-  }
+  public abstract BigDecimal getRealValue();
 
   public abstract String getHex();
 
