@@ -1,70 +1,36 @@
 package pl.wszib.metodyobliczenioweisymulacja.lab1.zadanie1;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
-import pl.wszib.metodyobliczenioweisymulacja.util.mathform.DoubleRepresentation;
-import pl.wszib.metodyobliczenioweisymulacja.util.mathform.FloatRepresentation;
-import pl.wszib.metodyobliczenioweisymulacja.util.mathform.FloatingPointRepresentation;
-import pl.wszib.metodyobliczenioweisymulacja.util.mathform.MathForm;
-
-public class Zadanie1 {
-  public static void main(String[] args) {
-    int maxIter = 100;
-    double startDouble = 0.01d;
-    float startFloat = 0.01f;
-
-    compareFloatDouble(maxIter, startDouble, startFloat);
+public class Zadanie1 extends FloatingPointExperiment {
+  public Zadanie1(int maxIter) {
+    super(maxIter);
   }
 
-  public static void compareFloatDouble(int maxIter, double startDouble, float startFloat) {
-    try (PrintWriter csvWriter = new PrintWriter(new FileWriter("results_1.csv"))) {
-      // Starting point
-      double xDouble = startDouble;
-      float xFloat = startFloat;
-
-      csvWriter.println("n,float,f_ulp,f_hex,double,d_ulp,d_hex");
-
-      for (int n = 0; n < maxIter; n++) {
-        DoubleRepresentation _double = new DoubleRepresentation(xDouble);
-        FloatRepresentation _float = new FloatRepresentation(xFloat);
-
-        display(n, _double, "DOUBLE");
-        display(n, _float, "FLOAT");
-
-        csvWriter.println(n + "," +
-            _float.getRealValue() + "," +
-            _float.getUlp() + ',' +
-            _float.getHex() + "," +
-            _double.getRealValue() + "," +
-            _double.getUlp() + ',' +
-            _double.getHex());
-
-        // Kolejne iteracje
-        xDouble = countNext(xDouble);
-        xFloat = countNext(xFloat);
-      }
-      System.out.println("\n Results saved to results.csv");
-    } catch (IOException e) {
-      System.err.println("Error writing to CSV file: " + e.getMessage());
-    }
-  }
-
-  public static void display(int n, FloatingPointRepresentation<?> fp, String header) {
-    String mathForm = MathForm.of(fp);
-
-    System.out.println(n + " -------------------------------" + header + "-------------------------------");
-    System.out.println(fp.toString());
-    System.out.println("Math: " + mathForm);
-  }
-
-  public static double countNext(double previous) {
+  @Override
+  public double getNext(double previous) {
     return previous + 3.0d * previous * (1d - previous);
   }
 
-  public static float countNext(float previous) {
+  @Override
+  public float getNext(float previous) {
     return previous + 3.0f * previous * (1f - previous);
+  }
+
+  @Override
+  public BigDecimal getNext(BigDecimal x_n) {
+    final MathContext MC = MathContext.DECIMAL128;
+    // 1 - x_n
+    BigDecimal t1 = BigDecimal.ONE.subtract(x_n, MC);
+    // 3 * x_n
+    BigDecimal t2 = BigDecimal.valueOf(3).multiply(x_n, MC);
+
+    // 3 * x_n * (1 - x_n)
+    BigDecimal t3 = t2.multiply(t1, MC);
+
+    // x_n + 3 * x_n * (1 - x_n)
+    return t3.add(x_n, MC);
   }
 
 }
