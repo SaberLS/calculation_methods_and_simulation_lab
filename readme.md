@@ -27,7 +27,7 @@ Autor niniejszego repozytorium **nie jest autorem zadań**, a jedynie autorem
 
 ## 🧮 Zakres zadań
 
-1.  [ ] **Ciąg iteracyjny – wersja 1**
+1.  [ x ] **Ciąg iteracyjny – wersja 1**
 
     Obliczane są kolejne wyrazy ciągu zdefiniowanego wzorem:
 
@@ -41,7 +41,7 @@ Autor niniejszego repozytorium **nie jest autorem zadań**, a jedynie autorem
 
 ---
 
-2. [ ] **Ciąg iteracyjny – wersja równoważna**
+2. [ x ] **Ciąg iteracyjny – wersja równoważna**
 
    Algebraicznie równoważna wersja poprzedniego ciągu, zdefiniowana wzorem:
    ![equation](https://latex.codecogs.com/png.latex?x_{n%2B1}=4.0\cdot{x_n-3.0\cdot{x_n\cdot{x_n}}})
@@ -53,7 +53,7 @@ Autor niniejszego repozytorium **nie jest autorem zadań**, a jedynie autorem
 
 ---
 
-3. [ ] **Wyznaczyć "maszynowe epsilon"**
+3. [ x ] **Wyznaczyć "maszynowe epsilon"**
 
    Znalezienie najmniejszej liczby
    ![equation](https://latex.codecogs.com/png.latex?\varepsilon), dla której:
@@ -66,24 +66,24 @@ Autor niniejszego repozytorium **nie jest autorem zadań**, a jedynie autorem
 
 ---
 
-- [ ] **4. Sporządzenie sprawozdania** Na podstawie wykonanych zadań należy
-      opracować sprawozdanie zawierające pełną analizę wyników i wniosków.
+- [ x ] **4. Sporządzenie sprawozdania** Na podstawie wykonanych zadań należy
+  opracować sprawozdanie zawierające pełną analizę wyników i wniosków.
 
   ### Wymagania dotyczące sprawozdania:
 
   **Nagłówek:**
 
-  - [ ] numer laboratorium
-  - [ ] temat
-  - [ ] autor
-  - [ ] data
+  - [ x ] numer laboratorium
+  - [ x ] temat
+  - [ x ] autor
+  - [ x ] data
 
   **Zawartość:**
 
-  - [ ] Treść zadania
-  - [ ] Moje podejście do rozwiązania problemu — jak najgłębsza argumentacja
-        przyjętego podejścia
-  - [ ] Ważniejsze fragmenty kodu
-  - [ ] Wyniki (liczby, wykresy, tabele)
-  - [ ] Wnioski (związki przyczynowo-skutkowe)
-  - [ ] Bibliografia
+  - [ x ] Treść zadania
+  - [ x ] Moje podejście do rozwiązania problemu — jak najgłębsza argumentacja
+    przyjętego podejścia
+  - [ x ] Ważniejsze fragmenty kodu
+  - [ x ] Wyniki (liczby, wykresy, tabele)
+  - [ x ] Wnioski (związki przyczynowo-skutkowe)
+  - [ x ] Bibliografia
